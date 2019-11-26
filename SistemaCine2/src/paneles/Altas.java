@@ -54,7 +54,7 @@ public class Altas extends JFrame {
 	 * Create the frame.
 	 */
 	public Altas() {
-		setTitle("Systemoney (Altas Empleados)");
+		setTitle("Systemovey (Altas Empleados)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0,0,599,650);
 		

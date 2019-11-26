@@ -3,15 +3,17 @@ package paneles;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import clases.conexionBD;
 
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import paneles.ModificarEmpleado;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,6 +24,7 @@ public class MostrarEmpleados extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 	private JTable table;
 
 	private conexionBD conexionBD = new conexionBD();
@@ -71,7 +74,15 @@ public class MostrarEmpleados extends JFrame {
 		contentPane.add(TextFieldCodigo);
 		TextFieldCodigo.setColumns(10);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		JButton btnBuscar = new JButton("Modificar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String arra[]= new String [15];
+				arra = conexionBD.consultarCodigo(TextFieldCodigo.getText());
+				ModificarEmpleado modificarEmpleado = new ModificarEmpleado(arra);
+				modificarEmpleado.setVisible(true);
+			}
+		});
 		btnBuscar.setBounds(1200, 115, 97, 25);
 		contentPane.add(btnBuscar);
 		
