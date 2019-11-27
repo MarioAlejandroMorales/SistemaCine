@@ -4,13 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import clases.conexionBD;
+import clases.conexionClientes;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class ModificarClientes extends JFrame {
 	public ModificarClientes(String[] arra) {
 		setTitle("Systemovie (Modificar clientes)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 548, 546);
+		setBounds(100, 100, 549, 448);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -98,7 +97,7 @@ public class ModificarClientes extends JFrame {
 		radioButtonS.setBounds(466, 214, 45, 25);
 		contentPane.add(radioButtonS);
 		
-		if(arra[7].equals("F"))
+		if(arra[4].equals("F"))
 			radioButtonF.setSelected(true);
 		else
 			radioButtonS.setSelected(true);
@@ -109,7 +108,7 @@ public class ModificarClientes extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				conexionBD conexionBD = new conexionBD();
+				conexionClientes conexionClientes = new conexionClientes();
 				
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
@@ -125,7 +124,7 @@ public class ModificarClientes extends JFrame {
 				}
 				
 				try {
-					conexionBD.modificarCliente(nombre, apellido, telefono, correo, arra[12]);
+					conexionClientes.modificarClientes(nombre, apellido, telefono, correo, membresia, arra[5]);
 				} catch (SQLException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -133,7 +132,7 @@ public class ModificarClientes extends JFrame {
 			}
 		});
 		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnModificar.setBounds(202, 459, 126, 25);
+		btnModificar.setBounds(202, 312, 126, 25);
 		contentPane.add(btnModificar);
 	}
 

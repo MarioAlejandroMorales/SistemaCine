@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-import clases.conexionBD;
+import clases.conexionClientes;
 
 import paneles.ModificarClientes;
 
@@ -24,7 +24,7 @@ public class MostrarClientes extends JFrame {
 	
 	private JTable table;
 
-	private conexionBD conexionBD = new conexionBD();
+	private conexionClientes conexionClientes = new conexionClientes();
 	private JTextField TextFieldId;
 	/**
 	 * Create the frame.
@@ -39,7 +39,7 @@ public class MostrarClientes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Object a[][] = conexionBD.consultarEmpleados();
+		Object a[][] = conexionClientes.consultarClientes();
 		
 		table = new JTable();
 		table.setBounds(384, 87, 486, 199);
@@ -74,8 +74,9 @@ public class MostrarClientes extends JFrame {
 		JButton btnBuscar = new JButton("Modificar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String arra[]= new String [15];
-				arra = conexionBD.consultarCodigo(TextFieldId.getText());
+				String arra[]= new String [6];
+				arra = conexionClientes.consultarId(TextFieldId.getText());
+				//System.out.println(arra[1]);
 				ModificarClientes modificarClientes = new ModificarClientes(arra);
 				modificarClientes.setVisible(true);
 			}

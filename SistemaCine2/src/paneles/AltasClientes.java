@@ -4,12 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import clases.conexionBD;
+import clases.conexionClientes;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -24,7 +23,7 @@ public class AltasClientes extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
-	private conexionBD conexionBD = new conexionBD();
+	private conexionClientes conexionClientes = new conexionClientes();
 	private JTextField textFieldApellido;
 	private JLabel lblTelefono;
 	private JTextField textFieldTelefono;
@@ -37,7 +36,7 @@ public class AltasClientes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Altas() {
+	public AltasClientes() {
 		setTitle("Systemovey (Altas Clientes)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0,0,599,650);
@@ -119,15 +118,14 @@ public class AltasClientes extends JFrame {
 						membresia="SF";
 					}
 				}
-				Random r = new Random();
-				int id_r = r.nextInt(10000);
-				String id=String.valueOf(id_r);
 				
 				try {
-					conexionBD.insertEmpleado(nombre, apellido, telefono, correo, membresia, id);
+					conexionClientes.insertClientes(nombre, apellido, telefono, correo, membresia);
+					//Thread.sleep(2000);
+					String id = conexionClientes.consultarUltimo();
 					JOptionPane.showInternalMessageDialog(contentPane, "El ID es: "+id);
 					dispose();
-				} catch (SQLException | IOException e) {
+				} catch (SQLException | IOException /*| InterruptedException*/ e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

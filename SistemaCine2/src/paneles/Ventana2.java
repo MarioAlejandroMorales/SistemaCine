@@ -2,6 +2,8 @@ package paneles;
 
 import paneles.Altas;
 import paneles.MostrarEmpleados;
+import paneles.AltasClientes;
+import paneles.MostrarClientes;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JButton;
 
 
 @SuppressWarnings("serial")
@@ -36,8 +39,30 @@ public class Ventana2 extends JFrame {
         }
     };
     
+	private AltasClientes altasClientes = new AltasClientes(){
+        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+        @Override
+        public void dispose(){
+            //Hacemos visible la principal
+            getFrame().setVisible(true);
+            //Cerramos vNueva
+            super.dispose();
+        }
+    };
+    
 	private MostrarEmpleados mostrarEmpleados = new MostrarEmpleados(){
         //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+        @Override
+        public void dispose(){
+            //Hacemos visible la principal
+            getFrame().setVisible(true);
+            //Cerramos vNueva
+            super.dispose();
+        }
+    };
+    
+    private MostrarClientes mostrarClientes = new MostrarClientes(){
+    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
         @Override
         public void dispose(){
             //Hacemos visible la principal
@@ -104,6 +129,27 @@ public class Ventana2 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
+		JMenu mnClientes = new JMenu("Clientes");
+		menuBar.add(mnClientes);
+		
+		JMenuItem mntmAltas_1 = new JMenuItem("Altas");
+		mntmAltas_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				altasClientes.setVisible(true);
+			}
+		});
+		mnClientes.add(mntmAltas_1);
+		
+		JMenuItem mntmMostrar_1 = new JMenuItem("Mostrar");
+		mntmMostrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				mostrarClientes.setVisible(true);
+			}
+		});
+		mnClientes.add(mntmMostrar_1);
 		menuBar.add(mntmCartelera);
 		
 		
