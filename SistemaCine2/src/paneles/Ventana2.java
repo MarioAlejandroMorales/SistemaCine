@@ -4,8 +4,9 @@ import paneles.Altas;
 import paneles.MostrarEmpleados;
 import paneles.AltasClientes;
 import paneles.MostrarClientes;
+import paneles.AltasPeliculas;
+import paneles.Peliculas;
 
-import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -19,59 +20,13 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.JButton;
 
 
 @SuppressWarnings("serial")
 public class Ventana2 extends JFrame {
 
 	private JPanel contentPane;
-	@SuppressWarnings("unused")
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private Altas altas = new Altas(){
-        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
-        @Override
-        public void dispose(){
-            //Hacemos visible la principal
-            getFrame().setVisible(true);
-            //Cerramos vNueva
-            super.dispose();
-        }
-    };
-    
-	private AltasClientes altasClientes = new AltasClientes(){
-        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
-        @Override
-        public void dispose(){
-            //Hacemos visible la principal
-            getFrame().setVisible(true);
-            //Cerramos vNueva
-            super.dispose();
-        }
-    };
-    
-	private MostrarEmpleados mostrarEmpleados = new MostrarEmpleados(){
-        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
-        @Override
-        public void dispose(){
-            //Hacemos visible la principal
-            getFrame().setVisible(true);
-            //Cerramos vNueva
-            super.dispose();
-        }
-    };
-    
-    private MostrarClientes mostrarClientes = new MostrarClientes(){
-    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
-        @Override
-        public void dispose(){
-            //Hacemos visible la principal
-            getFrame().setVisible(true);
-            //Cerramos vNueva
-            super.dispose();
-        }
-    };
-
+	
     private JFrame getFrame(){
         return this;
     }
@@ -80,6 +35,7 @@ public class Ventana2 extends JFrame {
 	 * Create the frame.
 	 */
 	public Ventana2() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana2.class.getResource("/imagenes/LogoIcon.png")));
 		setTitle("Systemovie");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -89,7 +45,7 @@ public class Ventana2 extends JFrame {
 		
 		
 		
-		ImageIcon icoPeli = new ImageIcon("D:\\Biblioteca\\Documentos\\Java\\Cine\\src\\imagenes\\Polimex.png");
+		ImageIcon icoPeli = new ImageIcon(Ventana2.class.getResource("/imagenes/LogoIcon.png"));
 		Image imgPeli = icoPeli.getImage(); //convertimos icon en una imagen
 		Image otraimg = imgPeli.getScaledInstance(202,227,java.awt.Image.SCALE_SMOOTH);
 		ImageIcon otroico = new ImageIcon(otraimg);
@@ -109,8 +65,18 @@ public class Ventana2 extends JFrame {
 		JMenuItem mntmAltas = new JMenuItem("Altas");
 		mntmAltas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				altas.setVisible(true);
 				dispose();
+				Altas altas = new Altas(){
+			        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+				altas.setVisible(true);
 			}
 		});
 		mnEmpleados.add(mntmAltas);
@@ -118,17 +84,21 @@ public class Ventana2 extends JFrame {
 		JMenuItem mntmMostrar = new JMenuItem("Mostrar");
 		mntmMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mostrarEmpleados.setVisible(true);
 				dispose();
+				MostrarEmpleados mostrarEmpleados = new MostrarEmpleados(){
+			        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+				mostrarEmpleados.setVisible(true);
 			}
 		});
 		mnEmpleados.add(mntmMostrar);
-		
-		JMenuItem mntmCartelera = new JMenuItem("Cartelera");
-		mntmCartelera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		
 		JMenu mnClientes = new JMenu("Clientes");
 		menuBar.add(mnClientes);
@@ -137,6 +107,16 @@ public class Ventana2 extends JFrame {
 		mntmAltas_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				AltasClientes altasClientes = new AltasClientes(){
+			        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
 				altasClientes.setVisible(true);
 			}
 		});
@@ -146,11 +126,61 @@ public class Ventana2 extends JFrame {
 		mntmMostrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				MostrarClientes mostrarClientes = new MostrarClientes(){
+			    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
 				mostrarClientes.setVisible(true);
 			}
 		});
 		mnClientes.add(mntmMostrar_1);
-		menuBar.add(mntmCartelera);
+		
+		JMenu mnPeliculas = new JMenu("Peliculas");
+		menuBar.add(mnPeliculas);
+		
+		JMenuItem mntmAltas_2 = new JMenuItem("Altas");
+		mntmAltas_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				AltasPeliculas altasPeliculas = new AltasPeliculas(){
+			    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+			    altasPeliculas.setVisible(true);
+			}
+		});
+		mnPeliculas.add(mntmAltas_2);
+		
+		JMenuItem mntmCartelera = new JMenuItem("Cartelera");
+		mnPeliculas.add(mntmCartelera);
+		mntmCartelera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				Peliculas peliculas = new Peliculas(){
+			    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+			    peliculas.setVisible(true);
+			}
+		});
 		
 		
 	}

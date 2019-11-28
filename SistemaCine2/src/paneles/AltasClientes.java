@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
