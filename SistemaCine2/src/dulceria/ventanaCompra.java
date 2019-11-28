@@ -457,9 +457,7 @@ public class ventanaCompra extends JFrame {
 			tablaCompra.getColumnModel().getColumn(4).setResizable(false);
 			tablaCompra.getTableHeader().setReorderingAllowed(false);
 			
-		}
-		catch(Exception ee)
-		{
+		}catch(Exception ee){
 			
 		}
 		

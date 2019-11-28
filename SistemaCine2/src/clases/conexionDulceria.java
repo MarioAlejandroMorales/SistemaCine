@@ -12,7 +12,7 @@ private Connection con=null;
 	public void conectDatabase() 
 	{
 		String url = "jdbc:mysql://localhost:3306/";
-		String dbName = "banco";
+		String dbName = "cine";
 		String driver = "com.mysql.jdbc.Driver";
 		String userName = "root";
 		String password = "";

@@ -16,7 +16,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
+/*Equipo 4
+ * Centeno Almeida Alexis
+ * Jaramillo Reyes Ana Karen
+ * Morales Guerrero Mario Alejandro
+ * Ortíz Morales Carlos Alberto
+ * Rodriguez Mejia Roberto
+ * I5890 
+ * D02
+ * 2019B
+*/
 public class Principal {
 
 	private JFrame frmInicioSesion;

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.conexionPeliculas;
-
+import paneles.asientos_f;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -26,7 +26,10 @@ public class Peliculas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private conexionPeliculas conexionPeliculas = new conexionPeliculas();
-
+    
+	private JFrame getFrame(){
+        return this;
+    }
 	/**
 	 * Create the frame.
 	 */
@@ -66,13 +69,24 @@ public class Peliculas extends JFrame {
 				posY = 383;
 				posX = (((i-(mid ))*10)+(escalaBotonX*(i-(mid+1))));
 			}
-			ic[i-1] = new ImageIcon(new ImageIcon(a[i-1][6]).getImage().getScaledInstance(escalaBotonX, 337, Image.SCALE_DEFAULT) );			
-			jmi[i-1] = new JButton(a[i-1][0],ic[i-1]);
+			ic[i-1] = new ImageIcon(new ImageIcon(a[i-1][7]).getImage().getScaledInstance(escalaBotonX, 337, Image.SCALE_DEFAULT) );			
+			jmi[i-1] = new JButton(a[i-1][1],ic[i-1]);
 			jmi[i-1].setBounds(posX,posY,escalaBotonX,337);
+			int ivar=i-1;
 			jmi[i-1].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					//DetallesPelicula.setVisible(true);
-					//dispose();
+					@SuppressWarnings("serial")
+					asientos_f asientos_f = new asientos_f(a[ivar][0]){
+				        //Con esto cuando llamemos a dispose de vNueva abrimos la principal
+				        @Override
+				        public void dispose(){
+				            //Hacemos visible la principal
+				            getFrame().setVisible(true);
+				            //Cerramos vNueva
+				            super.dispose();
+				        }
+				    };
+				    asientos_f.setVisible(true);
 				}
 			});
 			

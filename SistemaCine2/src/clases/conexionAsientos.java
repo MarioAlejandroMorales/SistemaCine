@@ -3,7 +3,7 @@ package clases;
 import java.io.IOException;
 import java.sql.*;
 
-public class conexionPeliculas {
+public class conexionAsientos {
 	private Connection con=null;
 	
 	public void conectDatabase() {
@@ -40,7 +40,7 @@ public class conexionPeliculas {
 		ps.setString(10,horario);
 		ps.setString(11,h_entrada);
 		ps.setString(12,h_salida);
-		ps.setInt(13, contadorRegistros()+1);
+		
 		ps.setString(14,nip);
 		ps.setString(15,codigo);
 		//System.out.println(ps);
@@ -156,59 +156,39 @@ public class conexionPeliculas {
 /////////////////// Alexis Centeno
 	public String[][] consultarPeliculas() {
 		conectDatabase();
+		
 		int i=0, cont=0;
 		String sql = "SELECT COUNT(*) FROM pelicula";
 		Statement stmt;
+		
+		
+		
+		//System.out.println(sql);
 		try {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs.next())
 				cont=rs.getInt(1);
-			String a[][]= new String [cont][8];
+			String a[][]= new String [cont][7];
 			sql = "SELECT * from pelicula";
 			rs = stmt.executeQuery(sql);
+			
+			//System.out.println("The records are :"+rs);
 			while(rs.next()) {
-				a[i][0]=rs.getString(1);
-				a[i][1]=rs.getString(2);
-				a[i][2]=rs.getString(3);
-				a[i][3]=rs.getString(4);
-				a[i][4]=rs.getString(5);
-				a[i][5]=rs.getString(6);
-				a[i][6]=rs.getString(7);
-				a[i][7]=rs.getString(8);
+				a[i][0]=rs.getString(2);
+				a[i][1]=rs.getString(3);
+				a[i][2]=rs.getString(4);
+				a[i][3]=rs.getString(5);
+				a[i][4]=rs.getString(6);
+				a[i][5]=rs.getString(7);
+				a[i][6]=rs.getString(8);
 				i++;
 			}
 			if(a!=null) {
 				return a;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public String[] consultarPeliculasId(String id) {
-		conectDatabase();
-		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs;
-			String a[]= new String [8];
-			String sql = "SELECT * from pelicula WHERE Id='"+id+"'";
-			rs = stmt.executeQuery(sql);
-			if(rs.next()) {
-				a[0]=rs.getString(1);
-				a[1]=rs.getString(2);
-				a[2]=rs.getString(3);
-				a[3]=rs.getString(4);
-				a[4]=rs.getString(5);
-				a[5]=rs.getString(6);
-				a[6]=rs.getString(7);
-				a[7]=rs.getString(8);
-			}
-			if(a!=null) {
-				return a;
-			}
-		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -216,8 +196,12 @@ public class conexionPeliculas {
 	
 	public int contadorRegistros() {
 		int cont=0;
-		String sql = "SELECT COUNT(*) from pelicula";
+		String sql = "SELECT COUNT(*) from empleado";
 		Statement stmt;
+		
+		
+		
+		//System.out.println(sql);
 		try {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -225,66 +209,42 @@ public class conexionPeliculas {
 				cont=rs.getInt(1);
 			return cont;
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -1;
+	
+	}
+///////////////////////////// Carlos Ortiz
+	public int consultar_asientos() {
+		conectDatabase();
+		int cont = contador_asientos(); 
+		String sql  = "SELECT asiento from boleto";
+		for(int i = 1; i <= cont; i++) {
+			
+		}
+	return -1;
 	}
 	
-	public void insertarPelicula(String nombre, String protagonista, String director, String genero, String duracion, String clasificacion, String dirimg ) throws SQLException, IOException {
-			conectDatabase();
-			PreparedStatement ps=con.prepareStatement("INSERT INTO pelicula VALUES (?, ?, ?, ?, ?, ?, ?,?)");
-			ps.setInt(1, contadorRegistros()+1);
-			ps.setString(2,nombre);
-			ps.setString(3,protagonista);
-			ps.setString(4,director);
-			ps.setString(5,genero);
-			ps.setString(6,duracion);
-			ps.setString(7,clasificacion);
-			ps.setString(8,dirimg);
-			@SuppressWarnings("unused")
-			int i=ps.executeUpdate();
-			con.close();
-		}
-	
-	public String[] buscaCodigo(String id) {
-		conectDatabase();
-		String sql = "SELECT * from pelicula WHERE Id ='"+id+"'";
+	public int contador_asientos() {
+		int cont=0;
+		String sql = "SELECT COUNT(*) from boleto";
 		Statement stmt;
-		String cod="";
+		
+		
+		
+		//System.out.println(sql);
 		try {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs.next())
-				cod=rs.getString("id");
-			if(!cod.equals("")) {
-				String a[] = new String[7];
-				a[0]=rs.getString(2);
-				a[1]=rs.getString(3);
-				a[2]=rs.getString(4);
-				a[3]=rs.getString(5);
-				a[4]=rs.getString(6);
-				a[5]=rs.getString(7);
-				a[6]=rs.getString(8);
-				return a;
-			}
-			return null;
-			//System.out.println("The records are :"+rs);
+				cont=rs.getInt(1);
+			return cont;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return -1;
+	
 	}
-//////////////////////////////////////////
-
-	public void actualizaPelicula(String nombre, String protagonista, String director, String genero, String duracion,
-			String clasificacion, String dirImg, String id) throws SQLException, IOException{
-			conectDatabase();
-			String sql = "UPDATE pelicula SET nombre='"+nombre+"', protagonista='"+protagonista+"', director='"+director+"', genero='"+genero
-					+"', duracion='"+duracion+"', clasificacion='"+clasificacion+"', imagen='"+dirImg+"' WHERE id='"+id+"'";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.executeUpdate();
-				//System.out.println("The records are :"+rs);
-			con.close();
-		}	
 }
