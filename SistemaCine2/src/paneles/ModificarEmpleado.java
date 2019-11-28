@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ModificarEmpleado extends JFrame {
 	/**
@@ -37,6 +38,7 @@ public class ModificarEmpleado extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarEmpleado(String[] arra) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarEmpleado.class.getResource("/imagenes/LogoIcon.png")));
 		setTitle("Systemovie (Modificar empleados)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 548, 546);

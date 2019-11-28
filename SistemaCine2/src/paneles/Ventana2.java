@@ -16,6 +16,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dulceria.ventanaCompra;
+import dulceria.ventanaDulceria;
+
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -56,7 +60,7 @@ public class Ventana2 extends JFrame {
 		contentPane.add(lblLogo);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 206, 26);
+		menuBar.setBounds(0, 0, 310, 26);
 		contentPane.add(menuBar);
 		
 		JMenu mnEmpleados = new JMenu("Empleados");
@@ -165,6 +169,49 @@ public class Ventana2 extends JFrame {
 		
 		JMenuItem mntmCartelera = new JMenuItem("Cartelera");
 		mnPeliculas.add(mntmCartelera);
+		
+		JMenu mnDulceria = new JMenu("Dulceria");
+		menuBar.add(mnDulceria);
+		
+		JMenuItem mntmVender = new JMenuItem("Vender");
+		mntmVender.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ventanaCompra ventanaCompra = new ventanaCompra(){
+			    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+			    ventanaCompra.setVisible(true);	
+			}
+			
+		});
+		mnDulceria.add(mntmVender);
+		
+		JMenuItem mntmAdministrar = new JMenuItem("Administrar");
+		mntmAdministrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ventanaDulceria ventanaDulceria = new ventanaDulceria(){
+			    	//Con esto cuando llamemos a dispose de vNueva abrimos la principal
+			        @Override
+			        public void dispose(){
+			            //Hacemos visible la principal
+			            getFrame().setVisible(true);
+			            //Cerramos vNueva
+			            super.dispose();
+			        }
+			    };
+			    ventanaDulceria.setVisible(true);
+			}
+		});
+		mnDulceria.add(mntmAdministrar);
+		
 		mntmCartelera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

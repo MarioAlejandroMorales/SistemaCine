@@ -250,24 +250,13 @@ public class conexionPeliculas {
 //////////////////////////////////////////
 
 	public void actualizaPelicula(String nombre, String protagonista, String director, String genero, String duracion,
-			String clasificacion, String dirImg, String id) {
-		conectDatabase();
-		try {
-			PreparedStatement ps=con.prepareStatement("UPDATE INTO pelicula WHERE Id ='"+id+"' VALUES (?, ?, ?, ?, ?, ?, ?,?)");
-			ps.setString(1, id);
-			ps.setString(2,nombre);
-			ps.setString(3,protagonista);
-			ps.setString(4,director);
-			ps.setString(5,genero);
-			ps.setString(6,duracion);
-			ps.setString(7,clasificacion);
-			ps.setString(8,dirImg);
-			//System.out.println("The records are :"+rs);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	
+			String clasificacion, String dirImg, String id) throws SQLException, IOException{
+			conectDatabase();
+			String sql = "UPDATE pelicula SET nombre='"+nombre+"', protagonista='"+protagonista+"', director='"+director+"', genero='"+genero
+					+"', duracion='"+duracion+"', clasificacion='"+clasificacion+"', imagen='"+dirImg+"' WHERE id='"+id+"'";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+				//System.out.println("The records are :"+rs);
+			con.close();
+		}	
 }

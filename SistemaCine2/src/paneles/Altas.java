@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Altas extends JFrame {
@@ -54,6 +55,7 @@ public class Altas extends JFrame {
 	 * Create the frame.
 	 */
 	public Altas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Altas.class.getResource("/imagenes/LogoIcon.png")));
 		setTitle("Systemovey (Altas Empleados)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0,0,599,650);

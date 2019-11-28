@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ModificarClientes extends JFrame {
 	
@@ -28,6 +29,7 @@ public class ModificarClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarClientes(String[] arra) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarClientes.class.getResource("/imagenes/LogoIcon.png")));
 		setTitle("Systemovie (Modificar clientes)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 549, 448);

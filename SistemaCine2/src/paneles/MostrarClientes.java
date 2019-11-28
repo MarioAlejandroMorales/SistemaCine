@@ -16,6 +16,7 @@ import paneles.ModificarClientes;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class MostrarClientes extends JFrame {
 	
@@ -31,7 +32,8 @@ public class MostrarClientes extends JFrame {
 	 */
 	
 	public MostrarClientes() {
-		setTitle("Mostrar Clientes");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MostrarClientes.class.getResource("/imagenes/LogoIcon.png")));
+		setTitle("Systemovie(Mostrar Clientes)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 500);
 		contentPane = new JPanel();

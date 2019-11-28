@@ -16,6 +16,7 @@ import paneles.ModificarEmpleado;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class MostrarEmpleados extends JFrame {
 
@@ -34,7 +35,8 @@ public class MostrarEmpleados extends JFrame {
 	 */
 	
 	public MostrarEmpleados() {
-		setTitle("Mostrar Empleados");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MostrarEmpleados.class.getResource("/imagenes/LogoIcon.png")));
+		setTitle("Systemovie(Mostrar Empleados)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 500);
 		contentPane = new JPanel();

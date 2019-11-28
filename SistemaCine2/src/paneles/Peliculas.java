@@ -36,7 +36,7 @@ public class Peliculas extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Peliculas.class.getResource("/imagenes/LogoIcon.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 12));
-		setTitle("Peliculas");
+		setTitle("Systemovie(Cartelera)");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	    

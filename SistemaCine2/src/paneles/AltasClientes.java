@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class AltasClientes extends JFrame {
@@ -36,6 +37,7 @@ public class AltasClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public AltasClientes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AltasClientes.class.getResource("/imagenes/LogoIcon.png")));
 		setTitle("Systemovey (Altas Clientes)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0,0,599,650);
